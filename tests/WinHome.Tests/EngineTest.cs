@@ -153,7 +153,7 @@ namespace WinHome.Tests
                 mockLogger.Object,
                 _mockRuntimeResolver.Object
             );
-            
+
             var previousState = new HashSet<string> { "winget:UnchangedApp", "winget:OldApp" };
             _mockStateService.Setup(s => s.LoadState()).Returns(previousState);
 
@@ -166,8 +166,7 @@ namespace WinHome.Tests
             mockLogger.Verify(l => l.LogSuccess(It.Is<string>(s => s.Contains("Items to Add"))), Times.Once);
             mockLogger.Verify(l => l.LogSuccess(It.Is<string>(s => s.Contains("winget:NewApp"))), Times.Once);
             mockLogger.Verify(l => l.LogInfo(It.Is<string>(s => s.Contains("Unchanged Items"))), Times.Once);
-                        mockLogger.Verify(l => l.LogInfo(It.Is<string>(s => s.Contains("winget:UnchangedApp"))), Times.Once);
-                    }
-                }
-            }
-            
+            mockLogger.Verify(l => l.LogInfo(It.Is<string>(s => s.Contains("winget:UnchangedApp"))), Times.Once);
+        }
+    }
+}

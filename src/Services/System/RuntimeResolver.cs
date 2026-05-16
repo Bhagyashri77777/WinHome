@@ -42,7 +42,7 @@ namespace WinHome.Services.System
             {
                 string chocoPath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.CommonApplicationData), "chocolatey", "bin", "choco.exe");
                 if (File.Exists(chocoPath)) return chocoPath;
-                
+
                 string chocoPathAlt = @"C:\ProgramData\chocolatey\bin\choco.exe";
                 if (File.Exists(chocoPathAlt)) return chocoPathAlt;
             }
@@ -56,7 +56,7 @@ namespace WinHome.Services.System
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string scoopShim = Path.Combine(userProfile, "scoop", "shims", $"{runtimeName}.exe");
             if (File.Exists(scoopShim)) return scoopShim;
-            
+
             string scoopCmdShim = Path.Combine(userProfile, "scoop", "shims", $"{runtimeName}.cmd");
             if (File.Exists(scoopCmdShim)) return scoopCmdShim;
 
@@ -93,11 +93,11 @@ namespace WinHome.Services.System
                         fullPath = line;
                         break;
                     }
-                    
+
                     // Fallback to first found if nothing else
                     if (string.IsNullOrEmpty(fullPath)) fullPath = line;
                 }
-                
+
                 process.WaitForExit();
                 return process.ExitCode == 0 ? fullPath : string.Empty;
             }

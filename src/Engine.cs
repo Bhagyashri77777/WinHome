@@ -179,10 +179,10 @@ namespace WinHome
                     {
                         if (mgr is WinHome.Services.Plugins.PluginPackageManagerAdapter adapter)
                         {
-                             if (loggedPlugins.Add(app.Manager))
-                             {
-                                 _logger.LogInfo($"[Plugin] Discovered: {app.Manager} ({adapter.PluginType})");
-                             }
+                            if (loggedPlugins.Add(app.Manager))
+                            {
+                                _logger.LogInfo($"[Plugin] Discovered: {app.Manager} ({adapter.PluginType})");
+                            }
                         }
 
                         if (!mgr.IsAvailable())
@@ -238,18 +238,18 @@ namespace WinHome
 
                     // Find plugin by name
                     var plugin = plugins.FirstOrDefault(p => p.Name.Equals(pluginName, StringComparison.OrdinalIgnoreCase));
-                    
+
                     if (plugin != null)
                     {
                         if (loggedPlugins.Add(plugin.Name))
                         {
-                             _logger.LogInfo($"[Plugin] Discovered: {plugin.Name} ({plugin.Type})");
+                            _logger.LogInfo($"[Plugin] Discovered: {plugin.Name} ({plugin.Type})");
                         }
-                        
+
                         await _pluginManager.EnsureRuntimeAsync(plugin);
                         _logger.LogInfo($"[Plugin] Applying configuration for '{pluginName}'...");
                         var result = await _pluginRunner.ExecuteAsync(plugin, "apply", pluginConfig, new { dryRun = dryRun });
-                        
+
                         if (!result.Success)
                         {
                             _logger.LogError($"[Error] Plugin '{pluginName}' failed: {result.Error}");
@@ -401,7 +401,7 @@ namespace WinHome
                     }
                 }
                 catch { }
-                
+
                 _logger.LogInfo("[Engine] Waiting for network...");
                 Thread.Sleep(2000);
             }

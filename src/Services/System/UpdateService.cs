@@ -35,7 +35,7 @@ namespace WinHome.Services.System
                     _logger.LogSuccess($"[Update] New version available: {release.TagName}");
                     return true;
                 }
-                
+
                 _logger.LogInfo("[Update] You are running the latest version.");
                 return false;
             }
@@ -86,11 +86,11 @@ namespace WinHome.Services.System
                 // 1. Rename current EXE to .old
                 // 2. Move new EXE to current path
                 // 3. Start new process to delete .old and verify
-                
+
                 string oldPath = currentPath + ".old";
-                
+
                 if (File.Exists(oldPath)) File.Delete(oldPath);
-                
+
                 File.Move(currentPath, oldPath);
                 File.Move(tempPath, currentPath);
 

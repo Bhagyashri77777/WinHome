@@ -14,7 +14,7 @@ public class AppHostTests
     {
         // Arrange
         var args = new string[] { };
-        
+
         // Act
         using var host = AppHost.CreateHost(args);
         var logger = host.Services.GetRequiredService<ILogger>();
@@ -28,7 +28,7 @@ public class AppHostTests
     {
         // Arrange
         var args = new string[] { "--json" };
-        
+
         // Act
         using var host = AppHost.CreateHost(args);
         var logger = host.Services.GetRequiredService<ILogger>();
@@ -42,7 +42,7 @@ public class AppHostTests
     {
         // Arrange
         var args = new string[] { "--dry-run", "--json", "--debug" };
-        
+
         // Act
         using var host = AppHost.CreateHost(args);
         var logger = host.Services.GetRequiredService<ILogger>();

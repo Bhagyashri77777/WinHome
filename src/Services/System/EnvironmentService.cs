@@ -74,7 +74,7 @@ namespace WinHome.Services.System
                 string userPath = Environment.GetEnvironmentVariable("Path", EnvironmentVariableTarget.User) ?? string.Empty;
 
                 // Merge them
-                var combinedPath = string.Join(";", 
+                var combinedPath = string.Join(";",
                     machinePath.Split(';', StringSplitOptions.RemoveEmptyEntries)
                     .Concat(userPath.Split(';', StringSplitOptions.RemoveEmptyEntries))
                     .Distinct(StringComparer.OrdinalIgnoreCase));

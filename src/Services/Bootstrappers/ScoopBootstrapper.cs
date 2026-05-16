@@ -16,7 +16,7 @@ namespace WinHome.Services.Bootstrappers
         public bool IsInstalled()
         {
             if (_processRunner.RunCommand("scoop", "--version", false)) return true;
-            
+
             // Fallback for fresh installs where PATH isn't updated yet
             string[] searchPaths = {
                 Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), "scoop", "shims", "scoop.cmd"),

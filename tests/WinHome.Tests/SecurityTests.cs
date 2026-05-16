@@ -24,7 +24,7 @@ namespace WinHome.Tests
         {
             // Arrange
             var loggerMock = new Mock<ILogger>();
-            
+
             // Use a unique temp file for this test
             string tempStateFile = Path.GetTempFileName();
             Environment.SetEnvironmentVariable("WINHOME_STATE_PATH", tempStateFile);
@@ -54,17 +54,17 @@ namespace WinHome.Tests
         {
             // Arrange
             string path = "HKCU\\Software\\Test";
-            
+
             // To test this properly, we would ideally mock WindowsIdentity. 
             // Since we can't easily mock static WindowsIdentity.GetCurrent(), 
             // we will verify that the logic *doesn't* throw for a normal user (Scenario A),
             // and structurally assume the SYSTEM check is present.
             // However, we CAN test the path logic.
-            
+
             // Note: In a real CI environment running as a user, this should NOT throw.
             // If we were running this test as SYSTEM, it WOULD throw.
-            
-            try 
+
+            try
             {
                 RegistryGuard.ValidateContext(path);
             }
@@ -72,8 +72,8 @@ namespace WinHome.Tests
             {
                 // If we happen to be running as SYSTEM (e.g. GitHub Actions sometimes), 
                 // we verify the message.
-                 Assert.Contains("Security Risk", ex.Message);
-                 return;
+                Assert.Contains("Security Risk", ex.Message);
+                return;
             }
 
             // If we are NOT SYSTEM, no exception is thrown, which is also correct behavior for this test context.
@@ -87,7 +87,7 @@ namespace WinHome.Tests
 
             // Act & Assert
             // Should never throw regardless of user identity
-            RegistryGuard.ValidateContext(path); 
+            RegistryGuard.ValidateContext(path);
         }
     }
 }

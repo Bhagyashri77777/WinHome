@@ -18,7 +18,7 @@ namespace WinHome.Models
         [JsonPropertyName("update")]
         public bool Update { get; set; } = false;
 
-        
+
         [YamlMember(Alias = "distros")]
         [JsonPropertyName("distros")]
         public List<WslDistroConfig> Distros { get; set; } = new();

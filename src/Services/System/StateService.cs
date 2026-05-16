@@ -12,7 +12,7 @@ namespace WinHome.Services.System
         public StateService(ILogger logger)
         {
             _logger = logger;
-            
+
             var envPath = Environment.GetEnvironmentVariable("WINHOME_STATE_PATH");
             _stateFilePath = string.IsNullOrEmpty(envPath) ? "winhome.state.json" : envPath;
             _inMemoryState = LoadState();

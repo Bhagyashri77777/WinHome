@@ -35,7 +35,7 @@ namespace WinHome.Tests
 
             _mockProcessRunner.Setup(pr => pr.RunCommandWithOutput(It.IsAny<string>(), It.IsAny<string>()))
                              .Returns(""); // Not installed
-            
+
             // Allow for --version check
             _mockProcessRunner.Setup(pr => pr.RunCommand("winget", "--version", false, It.IsAny<Action<string>>())).Returns(true);
             _mockProcessRunner.Setup(pr => pr.RunCommand("winget", "source update", false, It.IsAny<Action<string>>())).Returns(true);

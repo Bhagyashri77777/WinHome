@@ -49,7 +49,7 @@ namespace WinHome.Services.Managers
 
             bool alreadyInstalled = false;
             bool manifestNotFound = false;
-            bool success = _processRunner.RunCommand(executable, args, false, line => 
+            bool success = _processRunner.RunCommand(executable, args, false, line =>
             {
                 if (line == null) return;
                 _logger.LogInfo($"[Scoop:Install] {line}");

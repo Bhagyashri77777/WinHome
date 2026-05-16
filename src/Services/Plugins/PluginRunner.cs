@@ -20,7 +20,7 @@ namespace WinHome.Services.Plugins
         public async Task<PluginResult> ExecuteAsync(PluginManifest plugin, string command, object? args, object? context)
         {
             var (fileName, arguments) = BuildProcessStartInfo(plugin);
-            
+
             var request = new PluginRequest
             {
                 Command = command,
@@ -45,7 +45,7 @@ namespace WinHome.Services.Plugins
 
             using var process = new Process { StartInfo = startInfo };
             using var cts = new CancellationTokenSource(TimeSpan.FromSeconds(30));
-            
+
             try
             {
                 _logger.LogInfo($"[PluginRunner] Starting {plugin.Name}: {fileName} {arguments}");
@@ -55,7 +55,7 @@ namespace WinHome.Services.Plugins
                 }
 
                 // Handling Stderr asynchronously to avoid deadlocks and log immediately
-                process.ErrorDataReceived += (sender, e) => 
+                process.ErrorDataReceived += (sender, e) =>
                 {
                     if (!string.IsNullOrEmpty(e.Data)) _logger.LogWarning($"[{plugin.Name}][STDERR] {e.Data}");
                 };
@@ -72,21 +72,21 @@ namespace WinHome.Services.Plugins
                 int totalRead = 0;
                 int maxBytes = 10 * 1024 * 1024; // 10 MB
 
-                while (true) 
+                while (true)
                 {
                     int read = await process.StandardOutput.ReadAsync(buffer.AsMemory(), cts.Token);
                     if (read == 0) break;
-                    
+
                     totalRead += read;
-                    if (totalRead > maxBytes) 
+                    if (totalRead > maxBytes)
                     {
                         process.Kill();
                         throw new InvalidOperationException("Plugin output exceeded size limit (10MB).");
                     }
-                    
+
                     outputBuilder.Append(buffer, 0, read);
                 }
-                
+
                 await process.WaitForExitAsync(cts.Token);
 
                 if (process.ExitCode != 0)
@@ -137,13 +137,13 @@ namespace WinHome.Services.Plugins
                     // uv run --quiet script.py
                     var uvPath = _runtimeResolver.Resolve("uv");
                     return (uvPath, $"run --quiet \"{mainPath}\"");
-                
+
                 case "typescript":
                 case "javascript":
                     // bun run script.ts
                     var bunPath = _runtimeResolver.Resolve("bun");
                     return (bunPath, $"run \"{mainPath}\"");
-                
+
                 case "executable":
                     return (mainPath, "");
 

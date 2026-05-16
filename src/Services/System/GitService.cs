@@ -20,7 +20,7 @@ namespace WinHome.Services.System
 
             string userProfile = Environment.GetFolderPath(Environment.SpecialFolder.UserProfile);
             string programData = Environment.GetEnvironmentVariable("ProgramData") ?? @"C:\ProgramData";
-            
+
             // Fallback for fresh Scoop installs (various possible locations)
             string[] fallbacks = {
                 Path.Combine(userProfile, "scoop", "shims", "git.exe"),

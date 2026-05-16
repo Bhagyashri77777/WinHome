@@ -62,8 +62,8 @@ namespace WinHome.Services.Bootstrappers
             }
             catch (Exception ex)
             {
-                 Console.WriteLine($"[Bootstrapper] Error installing {Name}: {ex.Message}");
-                 throw;
+                Console.WriteLine($"[Bootstrapper] Error installing {Name}: {ex.Message}");
+                throw;
             }
 
             Console.WriteLine($"[Bootstrapper] {Name} installed successfully.");

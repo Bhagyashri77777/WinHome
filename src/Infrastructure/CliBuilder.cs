@@ -89,7 +89,7 @@ public static class CliBuilder
         // State Command
         var stateCommand = new Command("state");
         stateCommand.Description = "Manage the system state managed by WinHome";
-        
+
         var listSubCommand = new Command("list");
         listSubCommand.Description = "List all items currently managed by WinHome";
         listSubCommand.SetAction(async (ParseResult result) =>

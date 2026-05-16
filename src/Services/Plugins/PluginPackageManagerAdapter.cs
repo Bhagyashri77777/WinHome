@@ -41,11 +41,11 @@ namespace WinHome.Services.Plugins
             // Ensure runtime is available before execution
             _manager.EnsureRuntimeAsync(_plugin).Wait();
 
-            var args = new 
-            { 
-                packageId = app.Id, 
+            var args = new
+            {
+                packageId = app.Id,
                 version = app.Version,
-                @params = app.Params 
+                @params = app.Params
             };
 
             var context = new { dryRun = dryRun };
@@ -68,8 +68,8 @@ namespace WinHome.Services.Plugins
 
             if (!result.Success)
             {
-                 // Log warning? For now throw.
-                 throw new Exception($"Plugin '{_plugin.Name}' failed to uninstall '{appId}': {result.Error}");
+                // Log warning? For now throw.
+                throw new Exception($"Plugin '{_plugin.Name}' failed to uninstall '{appId}': {result.Error}");
             }
         }
 
@@ -79,16 +79,16 @@ namespace WinHome.Services.Plugins
             private readonly PluginManifest _p;
             private readonly IPluginManager _m;
             private readonly IRuntimeResolver _r;
-            
-            public PluginRuntimeBootstrapper(PluginManifest p, IPluginManager m, IRuntimeResolver r) 
-            { 
-                _p = p; 
+
+            public PluginRuntimeBootstrapper(PluginManifest p, IPluginManager m, IRuntimeResolver r)
+            {
+                _p = p;
                 _m = m;
                 _r = r;
             }
-            
+
             public string Name => $"{_p.Name} Runtime";
-            
+
             public bool IsInstalled()
             {
                 // We check if the required runtime is installed
@@ -110,17 +110,17 @@ namespace WinHome.Services.Plugins
 
                 if (string.IsNullOrEmpty(exe)) return false;
 
-                try 
+                try
                 {
                     return Process.Start(new ProcessStartInfo { FileName = exe, Arguments = "--version", CreateNoWindow = true, UseShellExecute = false, RedirectStandardOutput = true })?.WaitForExit(1000) ?? false;
                 }
-                catch 
-                { 
-                    return false; 
+                catch
+                {
+                    return false;
                 }
-            } 
-            
-            public void Install(bool dryRun) 
+            }
+
+            public void Install(bool dryRun)
             {
                 _m.EnsureRuntimeAsync(_p).Wait();
             }

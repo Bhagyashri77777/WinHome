@@ -68,10 +68,10 @@ namespace WinHome.Services.Bootstrappers
             }
             catch (Exception ex) when (!ex.Message.Contains("Failed to install"))
             {
-                 Console.WriteLine($"[Bootstrapper] Unexpected error: {ex.Message}. Retrying...");
-                 Thread.Sleep(5000);
-                 Install(false);
-                 return;
+                Console.WriteLine($"[Bootstrapper] Unexpected error: {ex.Message}. Retrying...");
+                Thread.Sleep(5000);
+                Install(false);
+                return;
             }
 
             Console.WriteLine($"[Bootstrapper] {Name} installed successfully.");

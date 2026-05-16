@@ -120,9 +120,9 @@ capabilities:
             var mockManager = new Mock<IPluginManager>();
             var mockRuntimeResolver = new Mock<IRuntimeResolver>();
             var manifest = new PluginManifest { Name = "test-plugin", Type = "python" };
-            
+
             var adapter = new PluginPackageManagerAdapter(manifest, mockRunner.Object, mockManager.Object, mockRuntimeResolver.Object);
-            
+
             mockRunner.Setup(r => r.ExecuteAsync(manifest, "install", It.IsAny<object>(), It.IsAny<object>()))
                 .ReturnsAsync(new PluginResult { Success = true });
 
@@ -131,10 +131,10 @@ capabilities:
 
             // Assert
             mockRunner.Verify(r => r.ExecuteAsync(
-                manifest, 
-                "install", 
+                manifest,
+                "install",
                 It.Is<object>(o => o != null && o.ToString()!.Contains("mypkg")), // Rough check or cast dynamic
-                It.IsAny<object>()), 
+                It.IsAny<object>()),
                 Times.Once);
         }
     }

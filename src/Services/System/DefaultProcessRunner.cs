@@ -118,7 +118,7 @@ namespace WinHome.Services.System
                 };
                 using var process = global::System.Diagnostics.Process.Start(psi);
                 if (process == null) return string.Empty;
-                
+
                 string output = process.StandardOutput.ReadToEnd().Trim();
                 process.WaitForExit();
                 return output;

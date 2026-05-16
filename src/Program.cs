@@ -25,7 +25,7 @@ class Program
                     {
                         var updater = host.Services.GetRequiredService<IUpdateService>();
                         // In a real app, get version from Assembly
-                        var currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "1.2.0"; 
+                        var currentVersion = System.Reflection.Assembly.GetExecutingAssembly().GetName().Version?.ToString(3) ?? "1.2.0";
                         if (await updater.CheckForUpdatesAsync(currentVersion))
                         {
                             await updater.UpdateAsync();
@@ -34,7 +34,7 @@ class Program
                     }
 
                     var runner = host.Services.GetRequiredService<AppRunner>();
-                    
+
                     var exitCode = await runner.RunAsync(file, dryRun, profile, debug, diff, json);
 
                     if (logger is JsonLogger jsonLogger)
@@ -53,7 +53,7 @@ class Program
                     try
                     {
                         var config = await generator.GenerateAsync();
-                        
+
                         var serializer = new SerializerBuilder()
                             .WithNamingConvention(CamelCaseNamingConvention.Instance)
                             .ConfigureDefaultValuesHandling(DefaultValuesHandling.OmitNull)
@@ -121,7 +121,7 @@ class Program
             Console.ForegroundColor = ConsoleColor.Red;
             Console.WriteLine($"[Fatal Error] An unhandled exception occurred:");
             Console.WriteLine(ex.Message);
-            
+
             if (args.Contains("--debug"))
             {
                 Console.WriteLine(ex.StackTrace);

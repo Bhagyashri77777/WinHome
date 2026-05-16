@@ -15,6 +15,6 @@ namespace WinHome.Models
 
         [YamlMember(Alias = "action")]
         [JsonPropertyName("action")]
-        public string Action { get; set; } = "set"; 
+        public string Action { get; set; } = "set";
     }
 }

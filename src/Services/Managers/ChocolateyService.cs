@@ -56,7 +56,7 @@ namespace WinHome.Services.Managers
             string args = $"install {app.Id} -y";
 
             bool alreadyInstalled = false;
-            bool success = _processRunner.RunCommand(executable, args, false, line => 
+            bool success = _processRunner.RunCommand(executable, args, false, line =>
             {
                 LogFiltered(line, "Install");
                 // Chocolatey sometimes returns non-zero even if packages are technically present or if it just says "0/1 packages installed"

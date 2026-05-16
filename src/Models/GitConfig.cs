@@ -4,7 +4,7 @@ using YamlDotNet.Serialization;
 
 namespace WinHome.Models
 {
-     public class GitConfig
+    public class GitConfig
     {
         // Convenience properties (Common stuff)
         [YamlMember(Alias = "userName")]

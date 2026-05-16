@@ -77,14 +77,14 @@ namespace WinHome.Services.System
             }
 
             trigger.Enabled = triggerConfig.Enabled;
-            if(triggerConfig.StartBoundary.HasValue)
+            if (triggerConfig.StartBoundary.HasValue)
                 trigger.StartBoundary = triggerConfig.StartBoundary.Value;
             if (triggerConfig.EndBoundary.HasValue)
                 trigger.EndBoundary = triggerConfig.EndBoundary.Value;
             if (triggerConfig.ExecutionTimeLimit.HasValue)
                 trigger.ExecutionTimeLimit = triggerConfig.ExecutionTimeLimit.Value;
             trigger.Id = triggerConfig.Id;
-            if(triggerConfig.Repetition != null)
+            if (triggerConfig.Repetition != null)
             {
                 trigger.Repetition.Interval = triggerConfig.Repetition.Interval;
                 trigger.Repetition.Duration = triggerConfig.Repetition.Duration;

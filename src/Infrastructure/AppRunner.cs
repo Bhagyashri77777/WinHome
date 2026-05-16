@@ -32,7 +32,7 @@ public class AppRunner
             }
 
             var yamlContent = await File.ReadAllTextAsync(configFile.FullName);
-            
+
             var validation = _validator.Validate(yamlContent);
             if (!validation.IsValid)
             {

@@ -11,7 +11,7 @@ namespace WinHome.Infrastructure.Helpers
             if (string.IsNullOrEmpty(keyPath)) return;
 
             // Normalize check for HKCU
-            bool isUserHive = keyPath.StartsWith("HKCU", StringComparison.OrdinalIgnoreCase) || 
+            bool isUserHive = keyPath.StartsWith("HKCU", StringComparison.OrdinalIgnoreCase) ||
                               keyPath.StartsWith("HKEY_CURRENT_USER", StringComparison.OrdinalIgnoreCase);
 
             if (isUserHive)

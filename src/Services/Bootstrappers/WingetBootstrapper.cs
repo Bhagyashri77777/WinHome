@@ -62,7 +62,7 @@ namespace WinHome.Services.Bootstrappers
 
                 _logger.LogInfo("[Bootstrapper] Installing dependencies...");
                 string arch = RuntimeInformation.ProcessArchitecture.ToString().ToLower(); // x64, arm64, x86
-                
+
                 var files = Directory.GetFiles(extractPath, "*", SearchOption.AllDirectories);
                 foreach (string file in files)
                 {
@@ -84,16 +84,16 @@ namespace WinHome.Services.Bootstrappers
 
                 _logger.LogInfo($"[Bootstrapper] {Name} installation commands completed.");
                 _logger.LogInfo("[Bootstrapper] Waiting 5 seconds for Windows to register the App Execution Alias...");
-                Thread.Sleep(5000); 
-                
+                Thread.Sleep(5000);
+
                 // Cleanup
-                try 
-                { 
+                try
+                {
                     _logger.LogInfo("[Bootstrapper] Cleaning up temporary files...");
-                    Directory.Delete(tempDir, true); 
-                } 
-                catch (Exception ex) 
-                { 
+                    Directory.Delete(tempDir, true);
+                }
+                catch (Exception ex)
+                {
                     _logger.LogWarning($"[Bootstrapper] Warning: Could not clean up temp directory: {ex.Message}");
                 }
             }

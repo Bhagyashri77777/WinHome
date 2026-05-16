@@ -19,6 +19,6 @@ namespace WinHome.Models
 
         [YamlMember(Alias = "type")]
         [JsonPropertyName("type")]
-        public string Type { get; set; } = "string"; 
+        public string Type { get; set; } = "string";
     }
 }

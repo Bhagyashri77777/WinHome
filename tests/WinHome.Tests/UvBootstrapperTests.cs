@@ -48,15 +48,15 @@ namespace WinHome.Tests
         // We can't easily mock Process.Start unless IProcessRunner was used for installation too, or if Process creation was abstracted.
         // The current implementation of UvBootstrapper.Install uses Process.Start directly.
         // This is a design limitation. Ideally UvBootstrapper should use IProcessRunner for installation as well.
-        
+
         // For now, I will skip testing Install method that calls Process.Start, or I should refactor UvBootstrapper to use IProcessRunner for Install as well.
         // Given "update the tests to its current status", I should try to test what I can.
         // Refactoring might be out of scope unless necessary. 
         // Wait, ChocolateyService uses IProcessRunner for everything.
-        
+
         // Let's check UvBootstrapper again.
         // It does: using var process = Process.Start(psi);
-        
+
         // If I want to test Install, I'd need to refactor. But the user asked to "update tests".
         // I'll stick to testing IsInstalled for now.
     }

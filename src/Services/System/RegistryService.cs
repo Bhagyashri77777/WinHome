@@ -68,7 +68,7 @@ namespace WinHome.Services.System
                 // If it's our security exception, we rethrow it or ensure it's logged as critical.
                 if (ex is InvalidOperationException && ex.Message.StartsWith("Security Risk"))
                 {
-                     throw;
+                    throw;
                 }
             }
         }

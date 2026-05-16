@@ -28,9 +28,9 @@ public class ConfigValidator : IConfigValidator
             var serializer = new SerializerBuilder()
                 .JsonCompatible()
                 .Build();
-            
+
             string jsonText = serializer.Serialize(yamlObject);
-            
+
             using var jsonDoc = JsonDocument.Parse(jsonText);
             var results = _schema.Evaluate(jsonDoc.RootElement, new EvaluationOptions
             {

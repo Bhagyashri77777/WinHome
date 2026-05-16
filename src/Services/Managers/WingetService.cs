@@ -39,7 +39,7 @@ namespace WinHome.Services.Managers
 
             // Filter out progress bar characters (Winget uses blocks)
             // Common block characters in different encodings: █ (U+2588) often appears as Γûê in some locales
-            if (line.Contains("Γûê") || line.Contains("ΓûÆ") || line.Contains("█") || line.Contains("░")) 
+            if (line.Contains("Γûê") || line.Contains("ΓûÆ") || line.Contains("█") || line.Contains("░"))
             {
                 // Only log if it's the final 100% or similar meaningful update (optional)
                 // For now, let's just suppress the spammy progress lines
@@ -67,7 +67,7 @@ namespace WinHome.Services.Managers
         public void Install(AppConfig app, bool dryRun)
         {
             ResolveWingetPath();
-            
+
             if (IsInstalled(app.Id))
             {
                 _logger.LogInfo($"[Winget] {app.Id} is already installed.");
@@ -87,7 +87,7 @@ namespace WinHome.Services.Managers
             if (!string.IsNullOrEmpty(app.Source)) args += $" --source {app.Source}";
 
             bool alreadyInstalled = false;
-            bool success = _processRunner.RunCommand(_wingetPath, args, false, line => 
+            bool success = _processRunner.RunCommand(_wingetPath, args, false, line =>
             {
                 LogFiltered(line, "Install");
                 if (line != null && line.Contains("A package version is already installed", StringComparison.OrdinalIgnoreCase))

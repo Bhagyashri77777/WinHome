@@ -27,7 +27,7 @@ namespace WinHome.Tests
 
             // Assert
             Assert.Equal("super-secret-value", result);
-            
+
             // Cleanup
             Environment.SetEnvironmentVariable("WINHOME_TEST_SECRET", null);
         }

@@ -7,7 +7,7 @@ namespace WinHome.Models
     {
         [YamlMember(Alias = "name")]
         [JsonPropertyName("name")]
-        public string Name { get; set; } = string.Empty; 
+        public string Name { get; set; } = string.Empty;
 
         [YamlMember(Alias = "setupScript")]
         [JsonPropertyName("setupScript")]

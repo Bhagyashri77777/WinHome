@@ -65,7 +65,7 @@ namespace WinHome.Tests
 
             // Cleanup
             File.Delete(sourcePath);
-            if(File.Exists(targetPath))
+            if (File.Exists(targetPath))
                 File.Delete(targetPath);
             File.Delete(targetPath + ".bak");
         }
@@ -77,9 +77,9 @@ namespace WinHome.Tests
             var sourcePath = Path.GetTempFileName();
             var targetPath = Path.GetTempFileName();
             var dotfileConfig = new DotfileConfig { Src = sourcePath, Target = targetPath };
-             if(File.Exists(targetPath))
+            if (File.Exists(targetPath))
                 File.Delete(targetPath);
-        
+
             // Act
             _dotfileService.Apply(dotfileConfig, false);
 
@@ -90,7 +90,7 @@ namespace WinHome.Tests
 
             // Cleanup
             File.Delete(sourcePath);
-             if(File.Exists(targetPath))
+            if (File.Exists(targetPath))
                 File.Delete(targetPath);
         }
     }

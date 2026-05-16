@@ -20,7 +20,7 @@ namespace WinHome.Tests
             _mockBootstrapper = new Mock<IPackageManagerBootstrapper>();
             _mockRuntimeResolver = new Mock<IRuntimeResolver>();
             var mockLogger = new Mock<ILogger>();
-            
+
             _mockRuntimeResolver.Setup(r => r.Resolve("choco")).Returns("choco");
 
             _chocolateyService = new ChocolateyService(_mockProcessRunner.Object, _mockBootstrapper.Object, mockLogger.Object, _mockRuntimeResolver.Object);

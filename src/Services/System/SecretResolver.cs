@@ -91,7 +91,7 @@ namespace WinHome.Services.System
             foreach (var prop in type.GetProperties())
             {
                 if (!prop.CanRead) continue;
-                
+
                 // Skip indexers
                 if (prop.GetIndexParameters().Length > 0) continue;
 
@@ -128,7 +128,7 @@ namespace WinHome.Services.System
             {
                 path = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.UserProfile), path.TrimStart('~', '/', '\\'));
             }
-            
+
             if (!File.Exists(path))
             {
                 _logger.LogWarning($"[Secret] File '{path}' not found.");
