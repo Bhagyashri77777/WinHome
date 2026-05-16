@@ -2,6 +2,18 @@ name: Bug Report
 description: File a bug report to help us improve WinHome
 labels: ["bug"]
 body:
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Pre-check
+      description: Please ensure you have done the following before filing a bug report.
+      options:
+        - label: I have searched existing issues for a duplicate.
+          required: true
+        - label: I am using the latest version of WinHome.
+          required: true
+        - label: I have read the [Configuration Wiki](https://github.com/DotDev262/WinHome/blob/main/docs/config.md).
+          required: true
   - type: markdown
     attributes:
       value: |
