@@ -188,7 +188,7 @@ namespace WinHome.Services.System
                         if (regValue != null)
                         {
                             // Find corresponding user-friendly key for this value
-                            var match = def.ValueMap.FirstOrDefault(kvp => 
+                            var match = def.ValueMap.FirstOrDefault(kvp =>
                             {
                                 if (kvp.Value is byte[] kvpBytes && regValue is byte[] regBytes)
                                 {
