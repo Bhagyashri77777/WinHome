@@ -5,7 +5,6 @@ import uuid
 import shutil
 from pathlib import Path
 
-# We map the plugin settings from the issue to Conda's actual .condarc settings
 SETTING_MAP = {
     "channels": "channels",
     "channelAlias": "channel_alias",
@@ -24,7 +23,6 @@ SETTING_MAP = {
 }
 
 def send_response(request_id, data=None, changed=False, error=None):
-    """Sends the JSON response back to WinHome safely."""
     response = {
         "requestId": request_id,
         "data": data,
@@ -36,12 +34,12 @@ def send_response(request_id, data=None, changed=False, error=None):
     print(json.dumps(response))
 
 def check_installed():
-    """Checks if conda is installed on the computer."""
     return shutil.which("conda") is not None
 
 def main():
     input_data = sys.stdin.read().strip()
     if not input_data:
+        send_response("unknown", error="Empty input received from host.")
         return
         
     try:
@@ -109,3 +107,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+    
