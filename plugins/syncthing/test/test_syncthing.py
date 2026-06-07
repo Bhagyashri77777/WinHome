@@ -1,7 +1,7 @@
 import json
+import os
 import subprocess
 import sys
-import os
 import tempfile
 import xml.etree.ElementTree as ET
 from pathlib import Path
@@ -72,16 +72,16 @@ def test_apply_config():
                 "settings": {"gui": {"enabled": True, "user": "admin"}}
             }
         }
-        
+
         stdout = run_plugin(json.dumps(request), env=env)
         response = json.loads(stdout)
         assert response["changed"] is True
-        
+
         if os.name == 'nt':
             config_file = Path(temp_dir) / "Syncthing" / "config.xml"
         else:
             config_file = Path(temp_dir) / ".config" / "syncthing" / "config.xml"
-            
+
         assert config_file.exists()
         tree = ET.parse(config_file)
         assert tree.getroot().find("gui").find("enabled").text == "true"
@@ -100,10 +100,9 @@ def test_idempotent_apply():
                 "settings": {"options": {"listenAddress": "default"}}
             }
         }
-        
+
         run_plugin(json.dumps(request), env=env)
-        
+
         stdout = run_plugin(json.dumps(request), env=env)
         response = json.loads(stdout)
         assert response["changed"] is False
-        
