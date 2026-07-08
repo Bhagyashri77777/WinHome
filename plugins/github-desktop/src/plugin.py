@@ -19,11 +19,7 @@ def deep_merge(base, update):
 def check_installed() -> bool:
     """Decoupled utility to determine installation state profiles cleanly."""
     appdata = os.environ.get("APPDATA", "")
-    config_path = (
-        os.path.join(appdata, "GitHub Desktop", "config.json")
-        if appdata
-        else ""
-    )
+    config_path = os.path.join(appdata, "GitHub Desktop", "config.json") if appdata else ""
     return bool(config_path and os.path.exists(config_path))
 
 
@@ -59,9 +55,7 @@ def main():
 
     if command == "check_installed":
         installed_status = check_installed()
-        print(
-            json.dumps({"requestId": request_id, "installed": installed_status})
-        )
+        print(json.dumps({"requestId": request_id, "installed": installed_status}))
         return
 
     elif command == "apply":
@@ -95,19 +89,13 @@ def main():
         changes_would_occur = current_config != updated_config
 
         if dry_run:
-            print(
-                json.dumps(
-                    {"requestId": request_id, "changed": changes_would_occur}
-                )
-            )
+            print(json.dumps({"requestId": request_id, "changed": changes_would_occur}))
             return
 
         if not os.path.exists(config_dir):
             os.makedirs(config_dir, exist_ok=True)
         try:
-            fd, temp_path = tempfile.mkstemp(
-                dir=config_dir, prefix="config_", suffix=".json"
-            )
+            fd, temp_path = tempfile.mkstemp(dir=config_dir, prefix="config_", suffix=".json")
             with os.fdopen(fd, "w", encoding="utf-8") as f:
                 json.dump(updated_config, f, indent=2)
             os.replace(temp_path, config_path)
@@ -122,17 +110,13 @@ def main():
             )
             return
 
-        print(
-            json.dumps({"requestId": request_id, "changed": changes_would_occur})
-        )
+        print(json.dumps({"requestId": request_id, "changed": changes_would_occur}))
     else:
         print(
             json.dumps(
                 {
                     "requestId": request_id,
-                    "error": (
-                        f"Unknown execution command structural parameter: {command}"
-                    ),
+                    "error": (f"Unknown execution command structural parameter: {command}"),
                 }
             )
         )

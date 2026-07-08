@@ -16,14 +16,13 @@ finally:
 
 
 class TestGitHubDesktopPlugin(unittest.TestCase):
-
     @patch("sys.stdin")
     def test_empty_stdin_throws_json_error(self, mock_stdin):
         """Verifies empty input returns structured JSON error metadata."""
         mock_stdin.read.return_value = "   "
         with patch("sys.stdout") as mock_stdout:
             plugin.main()
-            raw = "".join(call.args for call in mock_stdout.write.call_args_list)
+            raw = "".join(call.args[0] for call in mock_stdout.write.call_args_list)
             output = json.loads(raw.strip())
             self.assertEqual(output["requestId"], "unknown")
             self.assertIn("error", output)
@@ -43,7 +42,7 @@ class TestGitHubDesktopPlugin(unittest.TestCase):
         mock_exists.return_value = True
         with patch("sys.stdout") as mock_stdout:
             plugin.main()
-            raw = "".join(call.args for call in mock_stdout.write.call_args_list)
+            raw = "".join(call.args[0] for call in mock_stdout.write.call_args_list)
             output = json.loads(raw.strip())
             self.assertEqual(output["requestId"], "req-123")
             self.assertTrue(output["installed"])
@@ -55,9 +54,7 @@ class TestGitHubDesktopPlugin(unittest.TestCase):
     @patch("tempfile.mkstemp")
     @patch("os.fdopen", new_callable=mock_open)
     @patch("os.replace")
-    def test_settings_deep_merge_atomic_write(
-        self, mock_rep, mock_fd, mock_stemp, mock_f, mock_ex, mock_in
-    ):
+    def test_settings_deep_merge_atomic_write(self, mock_rep, mock_fd, mock_stemp, mock_f, mock_ex, mock_in):
         """Verifies deep merges calculate variance parameters seamlessly."""
         mock_in.read.return_value = json.dumps(
             {
@@ -79,7 +76,7 @@ class TestGitHubDesktopPlugin(unittest.TestCase):
         )
         with patch("sys.stdout") as mock_stdout:
             plugin.main()
-            raw = "".join(call.args for call in mock_stdout.write.call_args_list)
+            raw = "".join(call.args[0] for call in mock_stdout.write.call_args_list)
             output = json.loads(raw.strip())
             self.assertEqual(output["requestId"], "req-446")
             self.assertTrue(output["changed"])
