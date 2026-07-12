@@ -722,8 +722,8 @@ namespace WinHome
         try
         {
           using var response = await _httpClient.GetAsync(
-              ConnectivityCheckUri, 
-              HttpCompletionOption.ResponseHeadersRead, 
+              ConnectivityCheckUri,
+              HttpCompletionOption.ResponseHeadersRead,
               cancellationToken);
               
           if (response.IsSuccessStatusCode)
