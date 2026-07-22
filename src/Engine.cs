@@ -739,7 +739,6 @@ namespace WinHome
         await Task.Delay(2000, cancellationToken);
       }
       return false;
-    
     }
   }
 }
